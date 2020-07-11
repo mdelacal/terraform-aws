@@ -1,6 +1,6 @@
 # Configurar el proveedor AWS
 provider "aws" {
-  region = "eu-west-2"
+  region = "${var.region}"
   #access_key = ""
   #secret_key = ""
 }
