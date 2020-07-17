@@ -30,3 +30,27 @@ resource "aws_security_group" "route_allow_http_ssh" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
+
+resource "aws_security_group" "elb_http" {
+    name = "elb_http"
+    description = "Allow traffic to elb"
+    vpc_id = "${aws_vpc.main1.id}"
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+        Name = "Allow traffic to elb"
+    }
+}
